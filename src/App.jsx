@@ -12,6 +12,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [gameInProgress, setGameInProgress] = useState(false);
+  const [showingSequence, setShowingSequence] = useState(false); // Nuevo estado
 
   // Sonidos para cada color con use-sound
   const [playRed] = useSound('/sounds/red.mp3');
@@ -19,8 +20,8 @@ function App() {
   const [playBlue] = useSound('/sounds/blue.mp3');
   const [playYellow] = useSound('/sounds/yellow.mp3');
 
-  // Muestra la secuencia del juego
   const showSequence = useCallback((sequence) => {
+    setShowingSequence(true); // Marca el inicio de la visualización de la secuencia
     sequence.forEach((color, index) => {
       setTimeout(() => {
         setMessage(`Watch: ${color}`);
@@ -34,6 +35,7 @@ function App() {
           setTimeout(() => {
             setMessage('Your turn!');
             setIsPlayerTurn(true);
+            setShowingSequence(false); // Marca el fin de la visualización de la secuencia
           }, 500);
         }
       }, (index + 1) * 1000);
@@ -96,7 +98,7 @@ function App() {
   };
 
   const startGame = () => {
-    if (gameInProgress) return;
+    if (gameInProgress || showingSequence) return; // Evita iniciar el juego si se está mostrando la secuencia
     if (gameOver) resetGame();
     setGameInProgress(true);
     nextRound();
@@ -114,14 +116,14 @@ function App() {
             id={color}
             className={`color-button ${color}`}
             onClick={() => handlePlayerInput(color)}
-            disabled={!isPlayerTurn}
+            disabled={!isPlayerTurn || showingSequence} // Deshabilita el botón si se está mostrando la secuencia
           ></button>
         ))}
       </div>
-      <button onClick={startGame} disabled={gameInProgress}>
+      <button onClick={startGame} disabled={gameInProgress || showingSequence}>
         Start Game
       </button>
-      <button onClick={resetGame}>
+      <button onClick={resetGame} disabled={showingSequence}> 
         Reset Game
       </button>
     </div>
