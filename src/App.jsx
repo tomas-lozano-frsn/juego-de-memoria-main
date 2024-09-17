@@ -17,10 +17,10 @@ function App() {
   const [showingSequence, setShowingSequence] = useState(false); // Indica si la secuencia del juego está siendo mostrada
 
   // Sonidos para cada color
-  const [playRed] = useSound('/sounds/red.mp3');
-  const [playGreen] = useSound('/sounds/green.mp3');
-  const [playBlue] = useSound('/sounds/blue.mp3');
-  const [playYellow] = useSound('/sounds/yellow.mp3');
+  const [playRed] = useSound('/public/sounds/red.mp3');
+  const [playGreen] = useSound('/public/sounds/green.mp3');
+  const [playBlue] = useSound('/public/sounds/blue.mp3');
+  const [playYellow] = useSound('/public/sounds/yellow.mp3');
 
   // Función para mostrar la secuencia generada por el juego
   const showSequence = useCallback((sequence) => {
