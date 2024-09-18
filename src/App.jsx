@@ -3,14 +3,14 @@ import useSound from 'use-sound'; // Importamos la biblioteca para reproducir so
 import './App.css'; // Importamos los estilos CSS
 
 // Definimos los colores que usaremos en el juego
-const colors = ['red', 'green', 'blue', 'yellow'];
+const colors = ['rojo', 'verde', 'azul', 'amarillo'];
 
 function App() {
   // Estados para el juego
   const [gameSequence, setGameSequence] = useState([]); // Almacena la secuencia generada por el juego
   const [playerSequence, setPlayerSequence] = useState([]); // Almacena la secuencia seleccionada por el jugador
   const [isPlayerTurn, setIsPlayerTurn] = useState(false); // Indica si es el turno del jugador
-  const [message, setMessage] = useState('Press Start to Play'); // Mensaje en pantalla para guiar al jugador
+  const [message, setMessage] = useState('Presiona Iniciar para jugar'); // Mensaje en pantalla para guiar al jugador
   const [score, setScore] = useState(0); // Almacena la puntuación del jugador
   const [gameOver, setGameOver] = useState(false); // Indica si el juego ha terminado
   const [gameInProgress, setGameInProgress] = useState(false); // Indica si hay un juego en progreso
@@ -27,19 +27,19 @@ function App() {
     setShowingSequence(true); // Indicamos que se está mostrando la secuencia
     sequence.forEach((color, index) => {
       setTimeout(() => {
-        setMessage(`Watch: ${color}`); // Actualizamos el mensaje para mostrar qué color se está resaltando
+        setMessage(`${color}`); // Actualizamos el mensaje para mostrar qué color se está resaltando
         flashColor(color); // Resaltamos el color en pantalla
 
         // Reproducimos el sonido correspondiente al color
-        if (color === 'red') playRed();
-        if (color === 'green') playGreen();
-        if (color === 'blue') playBlue();
-        if (color === 'yellow') playYellow();
+        if (color === 'rojo') playRed();
+        if (color === 'verde') playGreen();
+        if (color === 'azul') playBlue();
+        if (color === 'amarillo') playYellow();
 
         // Cuando termine de mostrar toda la secuencia, pasamos el turno al jugador
         if (index === sequence.length - 1) {
           setTimeout(() => {
-            setMessage('Your turn!'); // Avisamos al jugador que es su turno
+            setMessage('Tu turno'); // Avisamos al jugador que es su turno
             setIsPlayerTurn(true); // Activamos el turno del jugador
             setShowingSequence(false); // Indicamos que ya no se está mostrando la secuencia
           }, 500);
@@ -74,10 +74,10 @@ function App() {
     flashColor(color); // Resaltamos el color seleccionado
 
     // Reproducimos el sonido correspondiente al color
-    if (color === 'red') playRed();
-    if (color === 'green') playGreen();
-    if (color === 'blue') playBlue();
-    if (color === 'yellow') playYellow();
+    if (color === 'rojo') playRed();
+    if (color === 'verde') playGreen();
+    if (color === 'azul') playBlue();
+    if (color === 'amarillo') playYellow();
   };
 
   // Efecto que se ejecuta cuando la secuencia del jugador cambia
@@ -86,12 +86,12 @@ function App() {
     if (playerSequence.length === gameSequence.length && playerSequence.length > 0) {
       // Si ambas secuencias son iguales, el jugador acertó
       if (playerSequence.join('') === gameSequence.join('')) {
-        setMessage('Correct! Watch the next sequence.'); // Mostramos mensaje de éxito
+        setMessage('¡Correcto! Mira la siguiente secuencia.'); // Mostramos mensaje de éxito
         setScore((prevScore) => prevScore + 1); // Aumentamos la puntuación
         setTimeout(nextRound, 1000); // Avanzamos a la siguiente ronda
       } else {
         // Si las secuencias no coinciden, el jugador cometió un error
-        setMessage('Wrong! Game Over.'); // Mostramos mensaje de error
+        setMessage('¡Error! Fin del juego.'); // Mostramos mensaje de error
         setGameOver(true); // Indicamos que el juego ha terminado
         setGameInProgress(false); // Detenemos el progreso del juego
         setTimeout(resetGame, 2000); // Reiniciamos el juego después de 2 segundos
@@ -105,7 +105,7 @@ function App() {
     setPlayerSequence([]); // Reiniciamos la secuencia del jugador
     setScore(0); // Reiniciamos la puntuación
     setIsPlayerTurn(false); // Desactivamos el turno del jugador
-    setMessage('Press Start to Play'); // Mostramos el mensaje inicial
+    setMessage('Presiona Iniciar para jugar'); // Mostramos el mensaje inicial
     setGameOver(false); // Indicamos que el juego no ha terminado
     setGameInProgress(false); // No hay juego en progreso
   };
@@ -120,9 +120,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Memory Pattern Game</h1>
+      <h1>Juego de Patrón de Memoria</h1>
       <p>{message}</p>
-      <div className="score">Score: {score}</div>
+      <div className="score">puntaje: {score}</div>
       
       {/* Grid de botones de colores */}
       <div className="button-grid">
@@ -139,10 +139,10 @@ function App() {
       
       {/* Botones para iniciar y reiniciar el juego */}
       <button onClick={startGame} disabled={gameInProgress || showingSequence}>
-        Start Game
+      Iniciar Juego
       </button>
       <button onClick={resetGame} disabled={showingSequence}> 
-        Reset Game
+      Reiniciar Juego
       </button>
     </div>
   );

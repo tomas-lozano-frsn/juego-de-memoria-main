@@ -51,19 +51,19 @@ p {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.color-button.red {
+.color-button.rojo {
   background-color: red;
 }
 
-.color-button.green {
+.color-button.verde {
   background-color: green;
 }
 
-.color-button.blue {
+.color-button.azul {
   background-color: blue;
 }
 
-.color-button.yellow {
+.color-button.amarillo {
   background-color: yellow;
 }
 
