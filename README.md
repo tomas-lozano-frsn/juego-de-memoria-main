@@ -14,3 +14,8 @@ Descripción de los Estados del Juego
 4.	isGameOver: Un booleano que indica si el juego ha terminado. Cuando es true, el jugador puede reiniciar el juego.
 5.	isPlayingSequence: Este estado controla si el juego está mostrando la secuencia. Mientras la secuencia se muestra, el jugador no puede interactuar con los botones de colores.
 6.	isGameStarted: Un estado que indica si el juego ha comenzado. Al iniciar, el estado es false, pero cambia a true cuando el jugador empieza el juego.
+
+Conclusión
+	
+El código del juego se basa en la gestión de estados con React para controlar las diferentes fases del juego (inicio, progreso, fin). Se utiliza useEffect para manejar el tiempo de espera entre la secuencia generada por el juego y la interacción del jugador. Los estados principales (secuencia, puntuación, errores) se actualizan de manera reactiva para proporcionar una experiencia de juego interactiva y fluida.
+
